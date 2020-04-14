@@ -98,7 +98,7 @@ public class Message_adapter extends RecyclerView.Adapter<Message_adapter.Messag
                 holder.receiverProdileImage.setVisibility(View.VISIBLE);
 
                 holder.receiverMessageText.setBackgroundResource(R.drawable.receive_message_layout);
-                holder.receiverMessageText.setTextColor(Color.WHITE);
+                holder.receiverMessageText.setTextColor(Color.BLACK);
                 holder.receiverMessageText.setText(messages.getMessage());
             }
         }

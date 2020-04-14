@@ -7,8 +7,19 @@
     android:orientation="vertical"
     tools:context=".Sign_in">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="ChatApp"
+        android:textColor="#CD8500"
+        android:textStyle="bold"
+        android:textSize="50dp"/>
+
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Input_username"
+        android:layout_marginTop="40dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:counterEnabled="true"
@@ -38,6 +49,11 @@
 
     <Button
         android:id="@+id/sign_in"
+        android:layout_marginTop="40dp"
+        android:background="@drawable/botton_1"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="sign_in"
@@ -45,6 +61,11 @@
 
     <Button
         android:id="@+id/sign_up"
+        android:background="@drawable/botton_1"
+        android:layout_marginTop="30dp"
+        android:textColor="#FFFFFF"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:onClick="sign_up"
