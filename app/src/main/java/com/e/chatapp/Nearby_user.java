@@ -59,13 +59,12 @@ public class Nearby_user extends AppCompatActivity {
     }
 
     @Override
-    protected void onStart()
-    {
+    protected void onStart() {
         super.onStart();
 
         FirebaseRecyclerOptions<Friendlist_item> options =
                 new FirebaseRecyclerOptions.Builder<Friendlist_item>()
-                        .setQuery(UsersRef,  Friendlist_item.class)
+                        .setQuery(UsersRef, Friendlist_item.class)
                         .build();
 
         FirebaseRecyclerAdapter<Friendlist_item, FindFriendViewHolder> adapter =
@@ -82,7 +81,7 @@ public class Nearby_user extends AppCompatActivity {
                                 String user_ID = getRef(position).getKey();
 
                                 Intent profileIntent = new Intent(Nearby_user.this, User_profile.class);
-                                profileIntent.putExtra("user_ID",user_ID);
+                                profileIntent.putExtra("user_ID", user_ID);
                                 startActivity(profileIntent);
                             }
                         });
@@ -91,22 +90,20 @@ public class Nearby_user extends AppCompatActivity {
                     @NonNull
                     @Override
                     public FindFriendViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.friend_list_item,viewGroup,false);
+                        View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.friend_list_item, viewGroup, false);
                         FindFriendViewHolder viewHolder = new FindFriendViewHolder(view);
                         return viewHolder;
-                     }
+                    }
                 };
         FindFriendsRecyclerList.setAdapter(adapter);
-
         adapter.startListening();
     }
 
-    public static class FindFriendViewHolder extends RecyclerView.ViewHolder
-    {
-        TextView userName,userEmail;
+    public static class FindFriendViewHolder extends RecyclerView.ViewHolder {
+        TextView userName, userEmail;
         ImageView profileImage;
 
-        public FindFriendViewHolder(@NonNull View itemView){
+        public FindFriendViewHolder(@NonNull View itemView) {
             super(itemView);
             userName = itemView.findViewById(R.id.friend_name);
             userEmail = itemView.findViewById(R.id.friend_email);

@@ -1,6 +1,7 @@
 package com.e.chatapp.ui.friendlist;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -17,9 +18,11 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.e.chatapp.Edit_profile;
 import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
 import com.e.chatapp.User_package.Friendlist_item;
+import com.e.chatapp.User_profile;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -44,7 +47,7 @@ public class FriendlistFragment extends Fragment {
     private FirebaseAuth Auth;
     private String currentuser;
 
-    public FriendlistFragment(){
+    public FriendlistFragment() {
 
     }
 
@@ -67,66 +70,77 @@ public class FriendlistFragment extends Fragment {
     }
 
     @Override
-    public void onStart(){
+    public void onStart() {
         super.onStart();
 
-        FirebaseRecyclerOptions options =
+        FirebaseRecyclerOptions<Friendlist_item> options =
                 new FirebaseRecyclerOptions.Builder<Friendlist_item>()
-                .setQuery(FriendRef, Friendlist_item.class)
-                .build();
+                        .setQuery(FriendRef, Friendlist_item.class)
+                        .build();
 
-        FirebaseRecyclerAdapter<Friendlist_item, FriendListViewHolder> adapter
-                = new FirebaseRecyclerAdapter<Friendlist_item, FriendListViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(@NonNull final FriendListViewHolder friendListViewHolder, int i, @NonNull Friendlist_item friendlist_item) {
-                String userID = getRef(i).getKey();
-
-                UsersRef.child(userID).addValueEventListener(new ValueEventListener() {
+        FirebaseRecyclerAdapter<Friendlist_item, FriendListViewHolder> adapter =
+                new FirebaseRecyclerAdapter<Friendlist_item, FriendListViewHolder>(options) {
                     @Override
-                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        if (dataSnapshot.hasChild("image")){
-                            String profileImage = dataSnapshot.child("image").getValue().toString();
-                            String profileemail = dataSnapshot.child("email").getValue().toString();
-                            String profilename = dataSnapshot.child("username").getValue().toString();
+                    protected void onBindViewHolder(@NonNull final FriendListViewHolder friendListViewHolder, final int i, @NonNull Friendlist_item friendlist_item) {
+                        String userID = getRef(i).getKey();
 
-                            friendListViewHolder.username.setText(profilename);
-                            friendListViewHolder.email.setText(profileemail);
-                            Picasso.get().load(profileImage).placeholder(R.drawable.icon_user).into(friendListViewHolder.image);
-                        }
-                        else {
-                            String profileemail = dataSnapshot.child("email").getValue().toString();
-                            String profilename = dataSnapshot.child("username").getValue().toString();
+                        UsersRef.child(userID).addValueEventListener(new ValueEventListener() {
+                            @Override
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.hasChild("image")) {
+                                    String profileImage = dataSnapshot.child("image").getValue().toString();
+                                    String profileemail = dataSnapshot.child("email").getValue().toString();
+                                    String profilename = dataSnapshot.child("username").getValue().toString();
 
-                            friendListViewHolder.username.setText(profilename);
-                            friendListViewHolder.email.setText(profileemail);
-                        }
+                                    friendListViewHolder.username.setText(profilename);
+                                    friendListViewHolder.email.setText(profileemail);
+                                    Picasso.get().load(profileImage).placeholder(R.drawable.icon_user).into(friendListViewHolder.image);
+
+                                } else {
+                                    String profileemail = dataSnapshot.child("email").getValue().toString();
+                                    String profilename = dataSnapshot.child("username").getValue().toString();
+
+                                    friendListViewHolder.username.setText(profilename);
+                                    friendListViewHolder.email.setText(profileemail);
+                                }
+                                friendListViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        String user_ID = getRef(i).getKey();
+
+                                        Intent intent = new Intent();
+                                        intent.setClass(getActivity(), User_profile.class);
+                                        intent.putExtra("user_ID", user_ID);
+                                        startActivity(intent);
+                                    }
+                                });
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                            }
+                        });
                     }
 
+                    @NonNull
                     @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
-
+                    public FriendListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_list_item, parent, false);
+                        FriendListViewHolder viewHolder = new FriendListViewHolder(view);
+                        return viewHolder;
                     }
-                });
-            }
-
-            @NonNull
-            @Override
-            public FriendListViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.friend_list_item, parent, false);
-                FriendListViewHolder viewHolder = new FriendListViewHolder(view);
-                return viewHolder;
-            }
-        };
+                };
 
         Friend_Recycle.setAdapter(adapter);
         adapter.startListening();
     }
 
-    public static class FriendListViewHolder extends RecyclerView.ViewHolder{
+    public static class FriendListViewHolder extends RecyclerView.ViewHolder {
         TextView username, email;
         ImageView image;
 
-        public FriendListViewHolder (@NonNull View itemView){
+        public FriendListViewHolder(@NonNull View itemView) {
             super(itemView);
 
             username = itemView.findViewById(R.id.friend_name);

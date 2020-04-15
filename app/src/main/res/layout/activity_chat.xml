@@ -19,6 +19,7 @@
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
         android:layout_above="@+id/chat_layout"/>
 <!--    android:background="#5F9EA0"-->
     <LinearLayout

@@ -129,7 +129,7 @@ public class NotificationsFragment extends Fragment {
 
     public static class ChatListHolder extends RecyclerView.ViewHolder {
 
-        ImageView image;
+        CircleImageView image;
         TextView email, username;
 
         public ChatListHolder(@NonNull View itemView) {

@@ -54,7 +54,7 @@ public class Chat extends AppCompatActivity {
     private final List<Messages> messagesList = new ArrayList<>();
     private LinearLayoutManager linearLayoutManager;
     private Message_adapter message_adapter;
-    private RecyclerView messageList;
+    private RecyclerView userMessageList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,8 @@ public class Chat extends AppCompatActivity {
                         messagesList.add(messages);
 
                         message_adapter.notifyDataSetChanged();
+
+                        userMessageList.smoothScrollToPosition(userMessageList.getAdapter().getItemCount());
                     }
 
                     @Override
@@ -177,15 +179,15 @@ public class Chat extends AppCompatActivity {
 
         userImage = (CircleImageView) findViewById(R.id.friend_chat_portrait);
         userName = (TextView) findViewById(R.id.friend_chat_name);
-        userLastSeen = (TextView) findViewById(R.id.friend_last_seen);
+//        userLastSeen = (TextView) findViewById(R.id.friend_last_seen);
 
         btn_send = (Button) findViewById(R.id.btn_send_message);
         input_text = (EditText) findViewById(R.id.input_message);
 
         message_adapter = new Message_adapter(messagesList);
-        messageList = (RecyclerView) findViewById(R.id.message_recycler_view);
+        userMessageList = (RecyclerView) findViewById(R.id.message_recycler_view);
         linearLayoutManager = new LinearLayoutManager(this);
-        messageList.setLayoutManager(linearLayoutManager);
-        messageList.setAdapter(message_adapter);
+        userMessageList.setLayoutManager(linearLayoutManager);
+        userMessageList.setAdapter(message_adapter);
     }
 }

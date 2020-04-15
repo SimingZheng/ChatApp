@@ -3,6 +3,7 @@ package com.e.chatapp;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Notification;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
@@ -21,13 +22,15 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
+import java.util.HashMap;
+
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class User_profile extends AppCompatActivity {
 
     private String user_ID, state, currentuser;
 
-    private DatabaseReference UserRef, RequestRef, ChatRef;
+    private DatabaseReference UserRef, RequestRef, ChatRef, NotiRef;
     private FirebaseAuth Auth;
 
     private de.hdodenhof.circleimageview.CircleImageView user_portrait;
@@ -40,10 +43,11 @@ public class User_profile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_profile);
 
+        Auth = FirebaseAuth.getInstance();
         UserRef = FirebaseDatabase.getInstance().getReference().child("Users");
         RequestRef = FirebaseDatabase.getInstance().getReference().child("Request");
         ChatRef = FirebaseDatabase.getInstance().getReference().child("Contacts");
-        Auth = FirebaseAuth.getInstance();
+        NotiRef = FirebaseDatabase.getInstance().getReference().child("Notifications");
 
         user_ID = getIntent().getExtras().get("user_ID").toString();
         currentuser = Auth.getCurrentUser().getUid();
@@ -285,9 +289,22 @@ public class User_profile extends AppCompatActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()){
-                                                btn_request.setEnabled(true);
-                                                state = "send_request";
-                                                btn_request.setText("Cancel Request");
+                                                HashMap<String, String> request_noti_map = new HashMap<>();
+                                                request_noti_map.put("from", currentuser);
+                                                request_noti_map.put("type","request");
+
+                                                NotiRef.child(user_ID).push()
+                                                        .setValue(request_noti_map)
+                                                        .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                            @Override
+                                                            public void onComplete(@NonNull Task<Void> task) {
+                                                                if (task.isSuccessful()){
+                                                                    btn_request.setEnabled(true);
+                                                                    state = "send_request";
+                                                                    btn_request.setText("Cancel Request");
+                                                                }
+                                                            }
+                                                        });
                                             }
                                         }
                                     });

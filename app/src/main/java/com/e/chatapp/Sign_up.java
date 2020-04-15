@@ -24,6 +24,7 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 
 import java.util.Calendar;
@@ -37,6 +38,7 @@ public class Sign_up extends AppCompatActivity {
     private TextInputLayout input_password;
     private Button btn_Sign_up;
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference UsersRef;
 
     private static final Pattern PASSWORD_PATTERN =
             Pattern.compile("^" +
@@ -59,6 +61,7 @@ public class Sign_up extends AppCompatActivity {
         choose_birthday = findViewById(R.id.birthday);
         input_password = (TextInputLayout) findViewById(R.id.Input_password);
         btn_Sign_up = findViewById(R.id.sign_up);
+        UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
 
         choose_birthday.setOnClickListener(new View.OnClickListener() {
@@ -104,6 +107,10 @@ public class Sign_up extends AppCompatActivity {
                                         if (dataSnapshot.child(currentuser).exists())
                                             Toast.makeText(Sign_up.this, "Username already exist!", Toast.LENGTH_SHORT).show();
                                         else {
+
+                                            String phone_checker = FirebaseInstanceId.getInstance().getToken();
+                                            UsersRef.child(currentuser).child("phone_checker").setValue(phone_checker);
+
                                             users.child(currentuser).setValue(user);
                                             Toast.makeText(Sign_up.this, "Sign up successful!", Toast.LENGTH_SHORT).show();
                                                 startActivity(new Intent(Sign_up.this,Sign_in.class));

@@ -179,8 +179,74 @@ public class Request_list extends AppCompatActivity {
                                             }
 
                                             @Override
-                                            public void onCancelled
-                                                    (@NonNull DatabaseError databaseError) {
+                                            public void onCancelled (@NonNull DatabaseError databaseError) {
+                                            }
+                                        });
+                                    }
+                                    else if (type.equals("sent")) {
+                                        Button btn_request_sent = holder.itemView.findViewById(R.id.btn_accept);
+                                        btn_request_sent.setText("Request sent");
+
+                                        holder.itemView.findViewById(R.id.btn_accept).setVisibility(View.INVISIBLE);
+                                        holder.itemView.findViewById(R.id.btn_cancel).setVisibility(View.INVISIBLE);
+
+                                        System.out.println("222222222222222222222222222 " + type);
+                                        UserRef.child(user_ID).addValueEventListener(new ValueEventListener() {
+                                            @Override
+                                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                                if (dataSnapshot.hasChild("image")) {
+                                                    String RequestUserImage = dataSnapshot.child("image").getValue().toString();
+
+                                                    Picasso.get().load(RequestUserImage).placeholder(R.drawable.icon_user).into(holder.image);
+                                                }
+                                                final String RequestUserName = dataSnapshot.child("username").getValue().toString();
+                                                String RequestUserEmail = dataSnapshot.child("email").getValue().toString();
+
+                                                holder.username.setText(RequestUserName);
+                                                holder.email.setText("Request has sent to "+ RequestUserName);
+
+                                                holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        CharSequence options[] = new CharSequence[]{
+                                                               "Cancel"
+                                                        };
+                                                        AlertDialog.Builder builder = new AlertDialog.Builder(Request_list.this);
+                                                        builder.setTitle("Request have been sent");
+
+                                                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                                                            @Override
+                                                            public void onClick(DialogInterface dialog, int which) {
+                                                                if (which == 0) {
+                                                                    RequestRef.child(currentuser).child(user_ID)
+                                                                            .removeValue()
+                                                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                @Override
+                                                                                public void onComplete(@NonNull Task<Void> task) {
+                                                                                    if (task.isSuccessful()) {
+                                                                                        RequestRef.child(user_ID).child(currentuser)
+                                                                                                .removeValue()
+                                                                                                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                                                                    @Override
+                                                                                                    public void onComplete(@NonNull Task<Void> task) {
+                                                                                                        if (task.isSuccessful()) {
+                                                                                                            Toast.makeText(Request_list.this, "Request be canceled", Toast.LENGTH_LONG).show();
+                                                                                                        }
+                                                                                                    }
+                                                                                                });
+                                                                                    }
+                                                                                }
+                                                                            });
+                                                                }
+                                                            }
+                                                        });
+                                                        builder.show();
+                                                    }
+                                                });
+                                            }
+
+                                            @Override
+                                            public void onCancelled (@NonNull DatabaseError databaseError) {
                                             }
                                         });
                                     }
