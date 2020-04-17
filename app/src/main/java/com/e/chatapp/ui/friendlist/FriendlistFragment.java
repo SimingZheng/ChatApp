@@ -7,6 +7,7 @@ import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,8 +20,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.chatapp.Edit_profile;
+import com.e.chatapp.Find_friends;
+import com.e.chatapp.Nearby_Map;
 import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
+import com.e.chatapp.Request_list;
 import com.e.chatapp.User_package.Friendlist_item;
 import com.e.chatapp.User_profile;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -65,6 +69,33 @@ public class FriendlistFragment extends Fragment {
         currentuser = Auth.getCurrentUser().getUid();
         FriendRef = FirebaseDatabase.getInstance().getReference().child("Contacts").child(currentuser);
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
+
+        Button findFriend = root.findViewById(R.id.find_friends);
+        findFriend.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Find_friends.class);
+                startActivity(intent);
+            }
+        });
+
+        Button user_request = root.findViewById(R.id.user_request);
+        user_request.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Request_list.class);
+                startActivity(intent);
+            }
+        });
+
+        Button nearby = root.findViewById(R.id.nearby_user);
+        nearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Nearby_Map.class);
+                startActivity(intent);
+            }
+        });
 
         return root;
     }

@@ -83,11 +83,12 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="Edit profile"
-            android:textColor="#9F79EE"
+            android:textColor="#8E388E"
             android:textSize="14sp"
             android:textAllCaps="false"/>
 
         <Button
+            android:layout_marginTop="5dp"
             android:id="@+id/my_post"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -99,45 +100,13 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="My posts"
-            android:textColor="#9F79EE"
-            android:textSize="14sp"
-            android:textAllCaps="false"/>
-
-
-        <Button
-            android:id="@+id/nearby_user"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/fui_buttonShadow"
-            android:drawableLeft="@drawable/outline_person_pin_circle_black_18dp"
-            android:drawablePadding="20dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="Nearby users"
-            android:textColor="#9F79EE"
-            android:textSize="14sp"
-            android:textAllCaps="false"/>
-
-        <Button
-            android:id="@+id/user_request"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:drawableLeft="@drawable/outline_perm_identity_black_18dp_2"
-            android:drawablePadding="20dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="User request"
-            android:textColor="#9F79EE"
+            android:textColor="#8E388E"
             android:textSize="14sp"
             android:textAllCaps="false"/>
 
         <Button
             android:id="@+id/setting"
+            android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/fui_buttonShadow"
@@ -148,7 +117,24 @@
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
             android:text="Setting"
-            android:textColor="#9F79EE"
+            android:textColor="#8E388E"
+            android:textSize="14sp"
+            android:textAllCaps="false"/>
+
+        <Button
+            android:id="@+id/sign_out"
+            android:layout_marginTop="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@android:color/white"
+            android:drawableLeft="@drawable/outline_reply_all_black_18dp"
+            android:drawablePadding="20dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:text="Sign out"
+            android:textColor="#8E388E"
             android:textSize="14sp"
             android:textAllCaps="false"/>
 

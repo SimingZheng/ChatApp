@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.chatapp.Chat;
+import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
 import com.e.chatapp.User_package.Friendlist_item;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
@@ -63,6 +65,15 @@ public class NotificationsFragment extends Fragment {
         chatList = (RecyclerView) root.findViewById(R.id.chat_list_recycler_view);
         chatList.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        Button nearby = root.findViewById(R.id.news);
+        nearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Nearby_user.class);
+                startActivity(intent);
+            }
+        });
+
         return root;
     }
 
@@ -86,15 +97,35 @@ public class NotificationsFragment extends Fragment {
                             @Override
                             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                 if (dataSnapshot.exists()) {
+
                                     if (dataSnapshot.hasChild("image")) {
                                         Image[0] = dataSnapshot.child("image").getValue().toString();
                                         Picasso.get().load(Image[0]).into(chatListHolder.image);
                                     }
+
                                     final String Name = dataSnapshot.child("username").getValue().toString();
                                     final String Email = dataSnapshot.child("email").getValue().toString();
 
                                     chatListHolder.username.setText(Name);
-                                    chatListHolder.email.setText("Chat");
+
+                                    if (dataSnapshot.child("state").hasChild("state")) {
+                                        String state = dataSnapshot.child("state").child("state").getValue().toString();
+                                        String date = dataSnapshot.child("state").child("date").getValue().toString();
+                                        String time = dataSnapshot.child("state").child("time").getValue().toString();
+
+                                        if (state.equals("online")){
+                                            chatListHolder.online.setVisibility(View.VISIBLE);
+                                            chatListHolder.online.setTextColor(0xEECBAD);
+                                            chatListHolder.email.setText("online");
+                                        }
+                                        else if (state.equals("off line")){
+                                            chatListHolder.online.setVisibility(View.VISIBLE);
+                                            chatListHolder.online.setTextColor(0xCD2626);
+                                            chatListHolder.email.setText("Last Seen: " + date + " " + time);
+                                        }
+                                    } else {
+                                        chatListHolder.email.setText("never seen");
+                                    }
 
                                     chatListHolder.itemView.setOnClickListener(new View.OnClickListener() {
                                         @Override
@@ -131,6 +162,7 @@ public class NotificationsFragment extends Fragment {
 
         CircleImageView image;
         TextView email, username;
+        TextView online;
 
         public ChatListHolder(@NonNull View itemView) {
             super(itemView);
@@ -138,6 +170,8 @@ public class NotificationsFragment extends Fragment {
             image = itemView.findViewById(R.id.friend_portrait);
             username = itemView.findViewById(R.id.friend_name);
             email = itemView.findViewById(R.id.friend_email);
+
+            online = (TextView) itemView.findViewById(R.id.state);
         }
     }
 }

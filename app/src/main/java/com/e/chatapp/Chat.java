@@ -28,6 +28,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -189,5 +190,34 @@ public class Chat extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         userMessageList.setLayoutManager(linearLayoutManager);
         userMessageList.setAdapter(message_adapter);
+    }
+
+    private void DisplayLastSeen(){
+        rootRef.child("Users").child(sendID)
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        if (dataSnapshot.child("state").hasChild("state")) {
+                            String state = dataSnapshot.child("state").child("state").getValue().toString();
+                            String date = dataSnapshot.child("state").child("date").getValue().toString();
+                            String time = dataSnapshot.child("state").child("time").getValue().toString();
+
+                            if (state.equals("online")){
+                                userLastSeen.setText("online");
+                            }
+                            else if (state.equals("online")){
+                                userLastSeen.setText("Last Seen: " + date + " " + time);
+                            }
+                        } else {
+                            userLastSeen.setText("off line");
+                        }
+
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                    }
+                });
     }
 }

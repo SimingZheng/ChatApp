@@ -6,10 +6,50 @@
     android:fitsSystemWindows="true"
     android:orientation="vertical">
 
-    <View
+    <Button
+        android:drawableLeft="@drawable/outline_perm_identity_black_18dp_2"
+        android:id="@+id/find_friends"
+        android:drawablePadding="20dp"
+        android:paddingLeft="20dp"
+        android:text="Find Friends"
+        android:textColor="#8B8B7A"
+        android:gravity="center_vertical"
         android:layout_width="match_parent"
-        android:layout_height="0.1dp"
-        android:background="@color/colorPrimary" />
+        android:layout_height="wrap_content"
+        android:background="#E0EEE0"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/user_request"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white"
+        android:drawableLeft="@drawable/outline_person_add_black_18dp"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="User request"
+        android:textColor="#9F79EE"
+        android:textSize="14sp"
+        android:textAllCaps="false"/>
+
+    <Button
+        android:id="@+id/nearby_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@drawable/outline_person_pin_circle_black_18dp"
+        android:drawablePadding="20dp"
+        android:gravity="center_vertical"
+        android:textColor="#8B8B7A"
+        android:paddingLeft="20dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:text="Nearby users"
+        android:background="#E0EEE0"
+        android:textSize="14sp"
+        android:textAllCaps="false"/>
 
     <RelativeLayout
         android:layout_width="match_parent"

@@ -20,6 +20,8 @@ import com.e.chatapp.Edit_profile;
 import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
 import com.e.chatapp.Request_list;
+import com.e.chatapp.Setting;
+import com.e.chatapp.Sign_in;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -81,29 +83,20 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        Button nearby = root.findViewById(R.id.nearby_user);
-        nearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Nearby_user.class);
-                startActivity(intent);
-            }
-        });
-
-        Button user_request = root.findViewById(R.id.user_request);
-        user_request.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Request_list.class);
-                startActivity(intent);
-            }
-        });
-
         Button setting = root.findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Nearby_user.class);
+                Intent intent = new Intent(getActivity(), Setting.class);
+                startActivity(intent);
+            }
+        });
+
+        Button sign_out = root.findViewById(R.id.sign_out);
+        sign_out.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), Sign_in.class);
                 startActivity(intent);
             }
         });

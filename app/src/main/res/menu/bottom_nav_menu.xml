@@ -8,7 +8,7 @@
 
     <item
         android:id="@+id/navigation_notifications"
-        android:icon="@drawable/baseline_forum_black_18dp"
+        android:icon="@drawable/outline_question_answer_black_18dp"
         android:title="Chats" />
 
     <item

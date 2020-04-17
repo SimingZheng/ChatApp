@@ -5,14 +5,13 @@
     android:background="@drawable/border_1">
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:layout_marginStart="20dp"
         android:src="@drawable/icon_user"
         android:id="@+id/friend_portrait"
-        android:layout_width="60dp"
+        android:padding="12dp"
+        android:layout_width="100dp"
         android:layout_height="110dp" />
     <LinearLayout
         android:background="@color/cardview_shadow_end_color"
-        android:layout_marginStart="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -31,17 +30,38 @@
         android:textSize="20dp"
         android:height="30dp"
         android:layout_marginLeft="20dp" />
+            <TextView
+                android:id="@+id/state"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="state"
+                android:height="30dp"
+                android:textSize="17dp"
+                android:layout_marginLeft="30dp"
+                android:visibility="invisible"/>
     </LinearLayout>
 
+        <LinearLayout
+            android:background="@color/cardview_shadow_end_color"
+            android:layout_marginStart="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp">
         <TextView
             android:id="@+id/friend_email"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="User email"
-            android:height="30dp"
-            android:textSize="17dp"
-            android:layout_marginLeft="30dp" />
+            android:height="20dp"
+            android:textSize="14dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginLeft="10dp" />
+
+        </LinearLayout>
 
         <LinearLayout
             android:background="@color/cardview_shadow_end_color"
