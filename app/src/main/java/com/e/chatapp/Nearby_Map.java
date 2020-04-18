@@ -125,6 +125,7 @@ public class Nearby_Map extends FragmentActivity implements
 
         currentUserLocationMarker = mMap.addMarker(markerOptions);
 
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
         mMap.animateCamera(CameraUpdateFactory.zoomBy(12));
 
         if (googleApiClient != null){

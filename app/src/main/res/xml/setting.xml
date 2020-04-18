@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.SwitchPreferenceCompat
+        android:defaultValue="true"
+        android:icon="@drawable/outline_person_pin_circle_black_18dp"
+        android:key="switch_location"
+        android:summaryOff=" locating off"
+        android:summaryOn=" locating on"
+        android:switchTextOff="OFF"
+        android:switchTextOn="ON"
+        android:title="Locating" />
+</PreferenceScreen>

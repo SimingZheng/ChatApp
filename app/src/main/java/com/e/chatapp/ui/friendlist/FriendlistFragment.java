@@ -1,15 +1,18 @@
 package com.e.chatapp.ui.friendlist;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,6 +24,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.chatapp.Edit_profile;
 import com.e.chatapp.Find_friends;
+import com.e.chatapp.Nearby;
 import com.e.chatapp.Nearby_Map;
 import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
@@ -29,6 +33,8 @@ import com.e.chatapp.User_package.Friendlist_item;
 import com.e.chatapp.User_profile;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.GoogleApiAvailability;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -42,6 +48,8 @@ import java.util.List;
 
 public class FriendlistFragment extends Fragment {
 
+    private static final String TAG = "FriendlistFragment";
+    private static final int ERROR_DIALOG_REQUEST = 9001;
     private View root;
     private FriendlistViewModel friendlistViewModel;
     private List<Friendlist_item> friendList = new ArrayList<>();
@@ -70,6 +78,17 @@ public class FriendlistFragment extends Fragment {
         FriendRef = FirebaseDatabase.getInstance().getReference().child("Contacts").child(currentuser);
         UsersRef = FirebaseDatabase.getInstance().getReference().child("Users");
 
+        if (isServicesOK()){
+            Button nearby = root.findViewById(R.id.nearby_user);
+            nearby.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), Nearby.class);
+                    startActivity(intent);
+                }
+            });
+        }
+
         Button findFriend = root.findViewById(R.id.find_friends);
         findFriend.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -88,16 +107,29 @@ public class FriendlistFragment extends Fragment {
             }
         });
 
-        Button nearby = root.findViewById(R.id.nearby_user);
-        nearby.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Nearby_Map.class);
-                startActivity(intent);
-            }
-        });
-
         return root;
+    }
+
+    private void init(){
+
+    }
+
+    public boolean isServicesOK(){
+        Log.d(TAG, "isServicesOK : checking google services version");
+        int available = GoogleApiAvailability.getInstance().isGooglePlayServicesAvailable(getActivity());
+
+        if (available == ConnectionResult.SUCCESS){
+            Log.d(TAG, "isServiceOK: Google Play Services is working");
+            return true;
+        }
+        else if (GoogleApiAvailability.getInstance().isUserResolvableError(available)){
+            Log.d(TAG, "isServicesOK: an error occored but we can fix it");
+            Dialog dialog = GoogleApiAvailability.getInstance().getErrorDialog(getActivity(), available, ERROR_DIALOG_REQUEST);
+            dialog.show();
+        }else {
+            Log.d(TAG, "You can't make map requests");
+        }
+        return false;
     }
 
     @Override
