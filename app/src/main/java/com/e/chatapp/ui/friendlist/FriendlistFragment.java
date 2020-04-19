@@ -1,10 +1,8 @@
 package com.e.chatapp.ui.friendlist;
 
 import android.app.Dialog;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -22,11 +19,8 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.e.chatapp.Edit_profile;
 import com.e.chatapp.Find_friends;
 import com.e.chatapp.Nearby;
-import com.e.chatapp.Nearby_Map;
-import com.e.chatapp.Nearby_user;
 import com.e.chatapp.R;
 import com.e.chatapp.Request_list;
 import com.e.chatapp.User_package.Friendlist_item;

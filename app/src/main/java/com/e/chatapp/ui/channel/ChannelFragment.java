@@ -6,33 +6,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 
-import com.e.chatapp.Edit_profile;
 import com.e.chatapp.R;
-import com.e.chatapp.SubChannel;
-import com.e.chatapp.SubFashion;
-import com.e.chatapp.SubFood;
-import com.e.chatapp.SubGame;
-import com.e.chatapp.SubMovie;
-import com.e.chatapp.SubMusic;
-import com.e.chatapp.SubPet;
-import com.e.chatapp.SubShoot;
-import com.e.chatapp.SubSport;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.e.chatapp.ui.channel.subchannel.SubChannel;
+import com.e.chatapp.ui.channel.subchannel.SubFashion;
+import com.e.chatapp.ui.channel.subchannel.SubFood;
+import com.e.chatapp.ui.channel.subchannel.SubGame;
+import com.e.chatapp.ui.channel.subchannel.SubMovie;
+import com.e.chatapp.ui.channel.subchannel.SubMusic;
+import com.e.chatapp.ui.channel.subchannel.SubPet;
+import com.e.chatapp.ui.channel.subchannel.SubShoot;
+import com.e.chatapp.ui.channel.subchannel.SubSport;
 
 public class ChannelFragment extends Fragment{
 

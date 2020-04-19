@@ -1,14 +1,16 @@
-package com.e.chatapp;
+package com.e.chatapp.ui.channel.subchannel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class SubMusic extends AppCompatActivity {
+import com.e.chatapp.R;
+
+public class SubFood extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sub_music);
+        setContentView(R.layout.activity_sub_food);
     }
 }
