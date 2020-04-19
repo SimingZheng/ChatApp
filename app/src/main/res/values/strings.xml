@@ -17,4 +17,5 @@
     <string name="technology" />
     <string name="food" />
     <string name="movie" />
+    <string name="todo" />
 </resources>
