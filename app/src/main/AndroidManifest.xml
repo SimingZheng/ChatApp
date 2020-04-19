@@ -43,7 +43,7 @@
             android:value="@integer/google_play_services_version" />
         <activity
             android:name=".Nearby"
-            android:label="@string/title_activity_nearby"/>
+            android:label="Map"/>
         <activity
             android:name=".Nearby_Map"
             android:label="@string/title_activity_nearby__map" />

@@ -139,7 +139,6 @@ public class ChannelFragment extends Fragment{
             }
         });
 
-
         return root;
     }
 
