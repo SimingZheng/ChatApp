@@ -2,6 +2,7 @@ package com.e.chatapp.ui.notifications;
 
 import android.content.Intent;
 import android.media.Image;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -69,7 +70,7 @@ public class NotificationsFragment extends Fragment {
         nearby.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Nearby_user.class);
+                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://news.google.com/topstories?hl=en-IE&gl=IE&ceid=IE:en"));
                 startActivity(intent);
             }
         });
