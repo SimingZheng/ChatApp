@@ -17,7 +17,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubChannel"></activity>
+        <activity android:name=".SubGame"></activity>
+        <activity android:name=".SubMusic" />
+        <activity android:name=".SubPet" />
+        <activity android:name=".SubShoot" />
+        <activity android:name=".SubSport" />
+        <activity android:name=".SubFood" />
+        <activity android:name=".SubMovie" />
+        <activity android:name=".SubFashion" />
+        <activity android:name=".SubChannel" />
         <activity android:name=".Setting" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

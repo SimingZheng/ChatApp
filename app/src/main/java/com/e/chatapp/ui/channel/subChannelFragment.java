@@ -92,10 +92,8 @@ public class subChannelFragment extends Fragment {
             photoList.add(e);
             Photo f = new Photo("f", R.drawable.f);
             photoList.add(f);
-            Photo g = new Photo("g", R.drawable.g);
-            photoList.add(g);
-            Photo h = new Photo("h", R.drawable.h);
-            photoList.add(h);
+
+
 
 
         }

@@ -22,6 +22,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.e.chatapp.Edit_profile;
 import com.e.chatapp.R;
 import com.e.chatapp.SubChannel;
+import com.e.chatapp.SubFashion;
+import com.e.chatapp.SubFood;
+import com.e.chatapp.SubGame;
+import com.e.chatapp.SubMovie;
+import com.e.chatapp.SubMusic;
+import com.e.chatapp.SubPet;
+import com.e.chatapp.SubShoot;
+import com.e.chatapp.SubSport;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,43 +57,43 @@ public class ChannelFragment extends Fragment{
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
         InterestAdapter adapter = new InterestAdapter(interestList);*/
-       ImageButton movieButton = (ImageButton)root.findViewById(R.id.movieButton);
+       Button movieButton = (Button)root.findViewById(R.id.movieButton);
         movieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubMovie.class);
                 startActivity(intent);
             }
         });
-        ImageButton fashionButton = (ImageButton)root.findViewById(R.id.fashionButton);
+        Button fashionButton = (Button)root.findViewById(R.id.fashionButton);
         fashionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubFashion.class);
                 startActivity(intent);
             }
         });
-        ImageButton sportButton = (ImageButton)root.findViewById(R.id.sportButton);
+        Button sportButton = (Button)root.findViewById(R.id.sportButton);
         sportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubSport.class);
                 startActivity(intent);
             }
         });
-        ImageButton photograButton = (ImageButton)root.findViewById(R.id.phothograButton);
+        Button photograButton = (Button)root.findViewById(R.id.phothograButton);
         photograButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubShoot.class);
                 startActivity(intent);
             }
         });
-        ImageButton techButton = (ImageButton)root.findViewById(R.id.techButton);
+      Button techButton = (Button)root.findViewById(R.id.techButton);
         techButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -94,39 +102,39 @@ public class ChannelFragment extends Fragment{
                 startActivity(intent);
             }
         });
-        ImageButton foodButton = (ImageButton)root.findViewById(R.id.foodButton);
+       Button foodButton = (Button)root.findViewById(R.id.foodButton);
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubFood.class);
                 startActivity(intent);
             }
         });
-        ImageButton gameButton = (ImageButton)root.findViewById(R.id.gameButton);
+        Button gameButton = (Button)root.findViewById(R.id.gameButton);
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubGame.class);
                 startActivity(intent);
             }
         });
-        ImageButton petButton = (ImageButton)root.findViewById(R.id.petButton);
+        Button petButton = (Button)root.findViewById(R.id.petButton);
         petButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubPet.class);
                 startActivity(intent);
             }
         });
-        ImageButton musicButton = (ImageButton)root.findViewById(R.id.musicButton);
+        Button musicButton = (Button)root.findViewById(R.id.musicButton);
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubChannel.class);
+                intent.setClass(getActivity(), SubMusic.class);
                 startActivity(intent);
             }
         });
