@@ -8,15 +8,14 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_nearby__map">Map</string>
-    <string name="title_activity_nearby">Map</string>
-    <string name="sport" />
-    <string name="photograph" />
-    <string name="game" />
-    <string name="fashion" />
-    <string name="music" />
-    <string name="pet" />
-    <string name="technology" />
-    <string name="food" />
-    <string name="movie" />
-    <string name="todo" />
+    <string name="SPORT">SPORT</string>
+    <string name="PHOTOGRAPH">SHOOT</string>
+    <string name="GAME">GAME</string>
+    <string name="FASHION">FASHION</string>
+    <string name="MUSIC">MUSIC</string>
+    <string name="PET">PET</string>
+    <string name="TECHNOLOGY">TECHNOLOGY</string>
+    <string name="FOOD">FOOD</string>
+    <string name="MOVIE">MOVIE</string>
+    <string name="todo">todo</string>
 </resources>
