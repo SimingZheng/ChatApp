@@ -68,8 +68,7 @@ public class DashboardFragment extends Fragment {
         edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                intent.setClass(getActivity(), Edit_profile.class);
+                Intent intent = new Intent(getActivity(), Edit_profile.class);
                 startActivity(intent);
             }
         });

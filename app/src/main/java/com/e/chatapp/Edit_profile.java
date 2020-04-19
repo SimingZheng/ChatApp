@@ -62,20 +62,20 @@ public class Edit_profile extends AppCompatActivity {
         UserProfileImageRef = FirebaseStorage.getInstance().getReference().child("Profile Images");
 
         final SharedPreferences sharedPreferences = getSharedPreferences("user", Context.MODE_PRIVATE);
-        final String name = sharedPreferences.getString("name", null);
+        final String name = sharedPreferences.getString("username", null);
         EditText edit_username = (EditText) findViewById(R.id.edit_username);
-        SpannableString s_name = new SpannableString(name);
-        edit_username.setHint(s_name);
+//        SpannableString s_name = new SpannableString(name);
+        edit_username.setHint(name);
 
         final String email = sharedPreferences.getString("email", null);
         EditText edit_email = (EditText) findViewById(R.id.edit_email);
-        SpannableString s_email = new SpannableString(email);
-        edit_email.setHint(s_email);
+//        SpannableString s_email = new SpannableString(email);
+        edit_email.setHint(email);
 
         final String password = sharedPreferences.getString("password", null);
         EditText edit_password = (EditText) findViewById(R.id.edit_password);
-        SpannableString s_password = new SpannableString(password);
-        edit_password.setHint(s_password);
+//        SpannableString s_password = new SpannableString(password);
+        edit_password.setHint(password);
 
         InitializeFields();
 

@@ -12,9 +12,9 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".Setting"></activity>
@@ -45,7 +45,9 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Request_list" />
         <activity android:name=".User_profile" />
-        <activity android:name=".Nearby_user" />
+        <activity android:name=".Nearby_user"
+            android:parentActivityName=".Main_page"
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
         <activity android:name=".Edit_profile" />
         <activity
             android:name=".Main_page"
