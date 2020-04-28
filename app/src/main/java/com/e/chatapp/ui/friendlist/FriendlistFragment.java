@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.e.chatapp.Find_friends;
 import com.e.chatapp.Nearby;
+import com.e.chatapp.Nearby_Map;
 import com.e.chatapp.R;
 import com.e.chatapp.Request_list;
 import com.e.chatapp.User_package.Friendlist_item;
@@ -77,7 +78,7 @@ public class FriendlistFragment extends Fragment {
             nearby.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent = new Intent(getActivity(), Nearby.class);
+                    Intent intent = new Intent(getActivity(), Nearby_Map.class);
                     startActivity(intent);
                 }
             });
