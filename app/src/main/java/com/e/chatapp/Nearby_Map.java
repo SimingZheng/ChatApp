@@ -9,12 +9,17 @@ import androidx.fragment.app.FragmentActivity;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
+import com.e.chatapp.User_package.Friendlist_item;
 import com.e.chatapp.User_package.LocationHelper;
 import com.e.chatapp.User_package.User;
 import com.google.android.gms.common.ConnectionResult;
@@ -39,6 +44,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
+
+import java.net.URL;
 
 public class Nearby_Map extends FragmentActivity implements
         OnMapReadyCallback,
@@ -72,6 +80,14 @@ public class Nearby_Map extends FragmentActivity implements
             checkUserLocationPermisstion();
         }
 
+        Button nearby = findViewById(R.id.btn_nearby_user);
+        nearby.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Nearby_Map.this, Nearby_user.class);
+                startActivity(intent);
+            }
+        });
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -99,30 +115,30 @@ public class Nearby_Map extends FragmentActivity implements
 
                     if (postSnapshot.child("location").exists()) {
 
-                        LocationHelper locationclass = postSnapshot.child("location").getValue(LocationHelper.class);
+                        LocationHelper latitude = postSnapshot.child("location").getValue(LocationHelper.class);
+                        LocationHelper longitude = postSnapshot.child("location").getValue(LocationHelper.class);
+
                         User userclass = postSnapshot.getValue(User.class);
 
-                        LatLng latLng = new LatLng(locationclass.getLatitude(), locationclass.getLongitude());
+                        LatLng latLng = new LatLng(latitude.getLatitude(), longitude.getLongitude());
 
                         final String username = userclass.getUsername();
 
-//                        mMap.setOnMarkerClickListener();
-//
-//                        marker = mMap.addMarker(new MarkerOptions()
-//                                .position(latLng)
-//                                .title(username)
-//                                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
-//                        marker.setTag(0);
 
-                        MarkerOptions markerOptions = new MarkerOptions();
-                        markerOptions.position(latLng);
-                        markerOptions.title(username);
-                        markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE));
+                        if (!username.equals(currentuser)) {
+                            MarkerOptions markerOptions = new MarkerOptions();
+                            markerOptions.position(latLng);
+                            markerOptions.title(username);
+                            markerOptions.icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE));
+//                            URL url = new URL(Picasso.get().load(profileImage).placeholder(R.drawable.icon_user));
+//                            Bitmap bmp = BitmapFactory.decodeStream(url.openConnection().getInputStream());
+//                            MarkerOptions.icon(BitmapDescriptorFactory.fromBitmap(bmp));
+//                            markerOptions.icon(Picasso.get().load(profileImage).placeholder(R.drawable.icon_user).into(friendListViewHolder.image););
+                            Log.e("username", username);
+                            currentUserLocationMarker = mMap.addMarker(markerOptions);
 
-                        Log.e("username", username);
-//                        currentUserLocationMarker = mMap.addMarker(markerOptions);
-
-                        Log.e("Get Data", Double.toString(locationclass.getLatitude()) +", "+ Double.toString(locationclass.getLongitude()));
+                            Log.e("Get Data", Double.toString(latitude.getLatitude()) + ", " + Double.toString(longitude.getLongitude()));
+                        }
                     }
                 }
             }
@@ -132,6 +148,27 @@ public class Nearby_Map extends FragmentActivity implements
                 Log.e("The read failed: ", " error");
             }
         });
+//        final LatLng[] latLng = new LatLng[1];
+//        rootRef.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot snapshot) {
+//                LocationHelper userlatitude = snapshot.child("location").getValue(LocationHelper.class);
+//                LocationHelper userlongitude = snapshot.child("location").getValue(LocationHelper.class);
+//                Log.e("user", userlatitude+ " " + userlongitude);
+//                latLng[0] = new LatLng(userlatitude.getLatitude(), userlongitude.getLongitude());
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//        mMap.setOnMarkerClickListener(this);
+//        marker = mMap.addMarker(new MarkerOptions()
+//                .position(latLng[0])
+//                .title(currentuser)
+//                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_BLUE)));
+//        marker.setTag(0);
     }
 
     @Override
@@ -144,7 +181,7 @@ public class Nearby_Map extends FragmentActivity implements
         if (clickCount != null) {
             clickCount = clickCount + 1;
             marker.setTag(clickCount);
-            Toast.makeText(this,marker.getTitle() +" has been clicked " + clickCount + " times.",Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, marker.getTitle() + " has been clicked " + clickCount + " times.", Toast.LENGTH_SHORT).show();
         }
         return false;
     }
@@ -202,8 +239,8 @@ public class Nearby_Map extends FragmentActivity implements
 //        Toast.makeText(Nearby_Map.this, msg, Toast.LENGTH_SHORT).show();
 
         LocationHelper Helper = new LocationHelper(
-                location.getLongitude(),
-                location.getLatitude()
+                location.getLatitude(),
+                location.getLongitude()
         );
         rootRef.child(currentuser).child("location")
                 .setValue(Helper).addOnCompleteListener(new OnCompleteListener<Void>() {

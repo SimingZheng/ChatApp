@@ -141,6 +141,7 @@ public class FriendlistFragment extends Fragment {
                     @Override
                     protected void onBindViewHolder(@NonNull final FriendListViewHolder friendListViewHolder, final int i, @NonNull Friendlist_item friendlist_item) {
                         String userID = getRef(i).getKey();
+                        final String[] Image = {"user_image"};
 
                         UsersRef.child(userID).addValueEventListener(new ValueEventListener() {
                             @Override

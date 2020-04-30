@@ -3,30 +3,30 @@ package com.e.chatapp.User_package;
 import com.google.android.gms.maps.model.LatLng;
 
 public class LocationHelper {
-    private double Longitude;
-    private double Latitude;
+    private double longitude;
+    private double latitude;
 
     public LocationHelper(){
     }
 
-    public LocationHelper(double longitude, double latitude){
-        Longitude = longitude;
-        Latitude = latitude;
+    public LocationHelper(double latitude, double longitude){
+        this.longitude = longitude;
+        this.latitude = latitude;
     }
 
     public double getLongitude(){
-        return Longitude;
+        return longitude;
     }
 
     public void setLongitude(double longitude){
-        Longitude = longitude;
+        this.longitude = longitude;
     }
 
     public double getLatitude(){
-        return Latitude;
+        return latitude;
     }
 
-    public void setLatitude(double longitude){
-        Longitude = Latitude;
+    public void setLatitude(double latitude){
+        this.latitude = latitude;
     }
 }
