@@ -17,15 +17,15 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubGame"></activity>
-        <activity android:name=".SubMusic" />
-        <activity android:name=".SubPet" />
-        <activity android:name=".SubShoot" />
-        <activity android:name=".SubSport" />
-        <activity android:name=".SubFood" />
-        <activity android:name=".SubMovie" />
-        <activity android:name=".SubFashion" />
-        <activity android:name=".SubChannel" />
+        <activity android:name=".ui.channel.subchannel.SubGame"></activity>
+        <activity android:name=".ui.channel.subchannel.SubMusic" />
+        <activity android:name=".ui.channel.subchannel.SubPet" />
+        <activity android:name=".ui.channel.subchannel.SubShoot" />
+        <activity android:name=".ui.channel.subchannel.SubSport" />
+        <activity android:name=".ui.channel.subchannel.SubFood" />
+        <activity android:name=".ui.channel.subchannel.SubMovie" />
+        <activity android:name=".ui.channel.subchannel.SubFashion" />
+        <activity android:name=".ui.channel.subchannel.SubChannel" />
         <activity android:name=".Setting" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -43,7 +43,7 @@
             android:value="@integer/google_play_services_version" />
         <activity
             android:name=".Nearby"
-            android:label="@string/title_activity_nearby"/>
+            android:label="Map"/>
         <activity
             android:name=".Nearby_Map"
             android:label="@string/title_activity_nearby__map" />

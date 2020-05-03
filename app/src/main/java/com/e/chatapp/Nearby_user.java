@@ -2,12 +2,15 @@ package com.e.chatapp;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
+import android.icu.text.DecimalFormat;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.util.Log;
@@ -19,10 +22,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.e.chatapp.User_package.Friendlist_item;
+import com.e.chatapp.User_package.LocationHelper;
 import com.e.chatapp.User_package.User;
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
@@ -46,6 +51,7 @@ public class Nearby_user extends AppCompatActivity {
     public static int countFriends = 10;
     int user_image;
     String user_name;
+    private FirebaseAuth Auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,19 +76,89 @@ public class Nearby_user extends AppCompatActivity {
         FirebaseRecyclerAdapter<Friendlist_item, FindFriendViewHolder> adapter =
                 new FirebaseRecyclerAdapter<Friendlist_item, FindFriendViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull FindFriendViewHolder holder, final int position, @NonNull Friendlist_item model) {
-                        holder.userName.setText(model.getFriendName());
-                        holder.userEmail.setText(model.getFriendEmail());
-                        Picasso.get().load(model.getImage()).placeholder(R.drawable.icon_user).into(holder.profileImage);
+                    protected void onBindViewHolder(@NonNull final FindFriendViewHolder holder, final int position, @NonNull Friendlist_item model) {
+                        final String userID = getRef(position).getKey();
+                        final String[] Image = {"user_image"};
+                        Auth = FirebaseAuth.getInstance();
+                        final String currentuser = Auth.getCurrentUser().getUid();
 
-                        holder.itemView.setOnClickListener(new View.OnClickListener() {
+                        UsersRef.addValueEventListener(new ValueEventListener() {
+                            @RequiresApi(api = Build.VERSION_CODES.N)
                             @Override
-                            public void onClick(View v) {
-                                String user_ID = getRef(position).getKey();
+                            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                if (dataSnapshot.exists()) {
 
-                                Intent profileIntent = new Intent(Nearby_user.this, User_profile.class);
-                                profileIntent.putExtra("user_ID", user_ID);
-                                startActivity(profileIntent);
+                                    if (dataSnapshot.child(userID).child("location").exists()) {
+                                        LocationHelper latitude = dataSnapshot.child(userID).child("location").getValue(LocationHelper.class);
+                                        LocationHelper longitude = dataSnapshot.child(userID).child("location").getValue(LocationHelper.class);
+
+                                        LocationHelper userLatitude = dataSnapshot.child(currentuser).child("location").getValue(LocationHelper.class);
+                                        LocationHelper userLongitude = dataSnapshot.child(currentuser).child("location").getValue(LocationHelper.class);
+
+                                        LatLng latLng = new LatLng(latitude.getLatitude(), longitude.getLongitude());
+                                        LatLng userlatLng = new LatLng(userLatitude.getLatitude(), userLongitude.getLongitude());
+
+                                        Double userDistance = CalculationByDistance(latLng, userlatLng);
+
+                                        if (userDistance < 1) {
+
+                                            if (dataSnapshot.child(userID).hasChild("image")) {
+                                                String profileemail = dataSnapshot.child(userID).child("email").getValue().toString();
+                                                String profilename = dataSnapshot.child(userID).child("username").getValue().toString();
+//                                                String profileImage = dataSnapshot.child(userID).child("image").getValue().toString();
+
+                                                holder.userName.setText(profilename);
+                                                holder.userEmail.setText(userDistance+" km");
+//                                                Picasso.get().load(profileImage).placeholder(R.drawable.icon_user).into(holder.profileImage);
+                                                Image[0] = dataSnapshot.child(userID).child("image").getValue().toString();
+                                                Picasso.get().load(Image[0]).into(holder.profileImage);
+                                            } else {
+                                                String profileemail = dataSnapshot.child(userID).child("email").getValue().toString();
+                                                String profilename = dataSnapshot.child(userID).child("username").getValue().toString();
+
+                                                holder.userName.setText(profilename);
+                                                holder.userEmail.setText(userDistance+" km");
+                                            }
+                                            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                                                @Override
+                                                public void onClick(View v) {
+                                                    String user_ID = getRef(position).getKey();
+
+                                                    Intent intent = new Intent();
+                                                    intent.setClass(Nearby_user.this, User_profile.class);
+                                                    intent.putExtra("user_ID", user_ID);
+                                                    startActivity(intent);
+                                                }
+                                            });
+                                        }
+                                        else {
+                                            holder.itemView.setVisibility(View.GONE);
+                                            ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+                                            params.height=0;
+                                            params.width= 0;
+                                            holder.itemView.setLayoutParams(params);
+                                        }
+                                    }
+                                    else {
+                                        holder.itemView.setVisibility(View.GONE);
+                                        ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+                                        params.height=0;
+                                        params.width= 0;
+                                        holder.itemView.setLayoutParams(params);
+                                    }
+                                }
+                                else {
+                                    holder.itemView.setVisibility(View.GONE);
+                                    ViewGroup.LayoutParams params = holder.itemView.getLayoutParams();
+                                    params.height=0;
+                                    params.width= 0;
+                                    holder.itemView.setLayoutParams(params);
+                                }
+                            }
+
+                            @Override
+                            public void onCancelled(@NonNull DatabaseError databaseError) {
+
                             }
                         });
                     }
@@ -97,6 +173,32 @@ public class Nearby_user extends AppCompatActivity {
                 };
         FindFriendsRecyclerList.setAdapter(adapter);
         adapter.startListening();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        int kmInDec = Integer.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return Radius * c;
     }
 
     public static class FindFriendViewHolder extends RecyclerView.ViewHolder {

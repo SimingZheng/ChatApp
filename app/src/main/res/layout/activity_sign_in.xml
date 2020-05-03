@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@mipmap/wallpaper_sign_in2"
     tools:context=".Sign_in">
 
     <TextView
@@ -13,9 +14,9 @@
         android:layout_gravity="center"
         android:layout_marginTop="30dp"
         android:text="ChatApp"
-        android:textColor="#CD8500"
+        android:textColor="#9932CC"
         android:textStyle="bold"
-        android:textSize="50dp"/>
+        android:textSize="60dp"/>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/Input_username"
