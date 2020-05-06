@@ -32,18 +32,18 @@ public class subChannelFragment extends Fragment {
 
     public subChannelFragment(){
 
-    }
+        }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState) {
+        @Override
+        public View onCreateView(LayoutInflater inflater,
+                ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.sub_channel_fragment, container,false);
-
-
+            View view = inflater.inflate(R.layout.sub_channel_fragment, container,false);
 
 
-        Button button=(Button)view.findViewById(R.id.PostButton);
+
+
+            Button button=(Button)view.findViewById(R.id.PostButton);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
@@ -92,7 +92,12 @@ public class subChannelFragment extends Fragment {
             photoList.add(e);
             Photo f = new Photo("f", R.drawable.f);
             photoList.add(f);
-
+            Photo h = new Photo("h", R.drawable.h);
+            photoList.add(h);
+            Photo hh = new Photo("hh", R.drawable.hh);
+            photoList.add(hh);
+            Photo g = new Photo("g", R.drawable.g);
+            photoList.add(g);
 
 
 
