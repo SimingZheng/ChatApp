@@ -73,14 +73,14 @@ public class DashboardFragment extends Fragment {
             }
         });
 
-        Button myPost = root.findViewById(R.id.my_post);
-        myPost.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), Nearby_user.class);
-                startActivity(intent);
-            }
-        });
+//        Button myPost = root.findViewById(R.id.my_post);
+//        myPost.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(), Nearby_user.class);
+//                startActivity(intent);
+//            }
+//        });
 
         Button setting = root.findViewById(R.id.setting);
         setting.setOnClickListener(new View.OnClickListener() {

@@ -75,7 +75,7 @@
             android:id="@+id/edit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/fui_buttonShadow"
+            android:background="@android:color/white"
             android:drawableLeft="@drawable/outline_create_black_18dp"
             android:drawablePadding="20dp"
             android:gravity="center_vertical"
@@ -87,29 +87,29 @@
             android:textSize="14sp"
             android:textAllCaps="false"/>
 
-        <Button
-            android:layout_marginTop="5dp"
-            android:id="@+id/my_post"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:color/white"
-            android:drawableLeft="@drawable/outline_library_books_black_18dp"
-            android:drawablePadding="20dp"
-            android:gravity="center_vertical"
-            android:paddingLeft="20dp"
-            android:paddingTop="8dp"
-            android:paddingBottom="8dp"
-            android:text="My posts"
-            android:textColor="#8E388E"
-            android:textSize="14sp"
-            android:textAllCaps="false"/>
+<!--        <Button-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:id="@+id/my_post"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@android:color/white"-->
+<!--            android:drawableLeft="@drawable/outline_library_books_black_18dp"-->
+<!--            android:drawablePadding="20dp"-->
+<!--            android:gravity="center_vertical"-->
+<!--            android:paddingLeft="20dp"-->
+<!--            android:paddingTop="8dp"-->
+<!--            android:paddingBottom="8dp"-->
+<!--            android:text="My posts"-->
+<!--            android:textColor="#8E388E"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textAllCaps="false"/>-->
 
         <Button
             android:id="@+id/setting"
             android:layout_marginTop="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/fui_buttonShadow"
+            android:background="@android:color/white"
             android:drawableLeft="@drawable/outline_settings_black_18dp"
             android:drawablePadding="20dp"
             android:gravity="center_vertical"
