@@ -114,7 +114,7 @@ public class Edit_profile extends AppCompatActivity {
 
             if (resultCode == RESULT_OK) {
                 loadingBar.setTitle("Upload Profile Image");
-                loadingBar.setMessage("Please wait, your profile iamge is updating...");
+                loadingBar.setMessage("Please wait, your profile image is updating...");
                 loadingBar.setCanceledOnTouchOutside(false);
                 loadingBar.show();
 

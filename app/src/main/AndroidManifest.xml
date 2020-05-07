@@ -10,6 +10,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon"
@@ -17,7 +18,9 @@
         android:roundIcon="@drawable/icon"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.channel.subchannel.SubGame"></activity>
+        <activity android:name=".User_package.PostActivity"></activity>
+        <activity android:name=".User_package.SinglePostActivity"></activity>
+        <activity android:name=".ui.channel.subchannel.SubGame" />
         <activity android:name=".ui.channel.subchannel.SubMusic" />
         <activity android:name=".ui.channel.subchannel.SubPet" />
         <activity android:name=".ui.channel.subchannel.SubShoot" />
@@ -41,9 +44,10 @@
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
+
         <activity
             android:name=".Nearby"
-            android:label="Map"/>
+            android:label="Map" />
         <activity
             android:name=".Nearby_Map"
             android:label="@string/title_activity_nearby__map" />
@@ -54,9 +58,10 @@
             android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Request_list" />
         <activity android:name=".User_profile" />
-        <activity android:name=".Nearby_user"
+        <activity
+            android:name=".Nearby_user"
             android:parentActivityName=".Main_page"
-            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"/>
+            android:theme="@style/Theme.AppCompat.DayNight.NoActionBar" />
         <activity android:name=".Edit_profile" />
         <activity
             android:name=".Main_page"

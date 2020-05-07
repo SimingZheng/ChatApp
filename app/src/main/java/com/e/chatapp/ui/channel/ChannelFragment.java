@@ -49,8 +49,10 @@ public class ChannelFragment extends Fragment{
         movieButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Movie";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubMovie.class);
+                intent.setClass(getActivity(),SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -58,8 +60,10 @@ public class ChannelFragment extends Fragment{
         fashionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Fashion";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubFashion.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -67,8 +71,10 @@ public class ChannelFragment extends Fragment{
         sportButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Sport";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubSport.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -76,8 +82,10 @@ public class ChannelFragment extends Fragment{
         photograButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Shoot";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubShoot.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -85,8 +93,10 @@ public class ChannelFragment extends Fragment{
         techButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Technology";
                 Intent intent = new Intent();
                 intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -94,8 +104,10 @@ public class ChannelFragment extends Fragment{
         foodButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Food";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubFood.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -103,8 +115,10 @@ public class ChannelFragment extends Fragment{
         gameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Game";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubGame.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -112,8 +126,10 @@ public class ChannelFragment extends Fragment{
         petButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Pet";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubPet.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
@@ -121,8 +137,10 @@ public class ChannelFragment extends Fragment{
         musicButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                String data = "Music";
                 Intent intent = new Intent();
-                intent.setClass(getActivity(), SubMusic.class);
+                intent.setClass(getActivity(), SubChannel.class);
+                intent.putExtra("extra_data",data);
                 startActivity(intent);
             }
         });
