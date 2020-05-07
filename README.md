@@ -12,3 +12,6 @@ Clone from the github
 Make sure project connect to the Firebase
 ## More information
  
+[Design](https://github.com/SimingZheng/ChatApp/blob/master/design.md)
+ 
+[Structure](https://github.com/SimingZheng/ChatApp/blob/master/structure.md)
