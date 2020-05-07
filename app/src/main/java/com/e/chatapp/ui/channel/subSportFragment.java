@@ -80,24 +80,26 @@ public class subSportFragment extends Fragment {
 
     private void initPhotos(){
         for(int i=0;i<10;i++){
-            Photo f1 = new Photo("f1", R.drawable.f1);
-            photoList.add(f1);
-            Photo f2 = new Photo("f2", R.drawable.f2);
-            photoList.add(f2);
-            Photo f3 = new Photo("f3", R.drawable.f3);
-            photoList.add(f3);
-            Photo f4 = new Photo("f4", R.drawable.f4);
-            photoList.add(f4);
-            Photo f5 = new Photo("f5", R.drawable.f5);
-            photoList.add(f5);
-            Photo f6 = new Photo("f6", R.drawable.f6);
-            photoList.add(f6);
-            Photo f7 = new Photo("f7", R.drawable.f7);
-            photoList.add(f7);
-            Photo f8 = new Photo("f8", R.drawable.f8);
-            photoList.add(f8);
-            Photo f9 = new Photo("f9", R.drawable.f9);
-            photoList.add(f9);
+            Photo sp1 = new Photo("sp1", R.drawable.sp1);
+            photoList.add(sp1);
+            Photo sp2 = new Photo("sp2", R.drawable.sp2);
+            photoList.add(sp2);
+            Photo sp3 = new Photo("sp3", R.drawable.sp3);
+            photoList.add(sp3);
+            Photo sp4 = new Photo("sp4", R.drawable.sp4);
+            photoList.add(sp4);
+            Photo sp5 = new Photo("sp5", R.drawable.sp5);
+            photoList.add(sp5);
+            Photo sp6 = new Photo("sp6", R.drawable.sp6);
+            photoList.add(sp6);
+            Photo sp7 = new Photo("sp7", R.drawable.sp7);
+            photoList.add(sp7);
+            Photo sp8 = new Photo("sp8", R.drawable.sp8);
+            photoList.add(sp8);
+            Photo sp9 = new Photo("sp9", R.drawable.sp9);
+            photoList.add(sp9);
+            Photo sp10 = new Photo("sp10", R.drawable.sp10);
+            photoList.add(sp10);
 
 
         }

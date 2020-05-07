@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.Toolbar;
 
 import com.e.chatapp.R;
+import com.e.chatapp.User_package.PostActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,13 +48,16 @@ public class subFashionFragment extends Fragment {
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent();
-                /* 开启Pictures画面Type设定为image */
+
+                Intent intent = new Intent(getActivity(), PostActivity.class);
+                startActivity(intent);
+
+                /*// 开启Pictures画面Type设定为image
                 intent.setType("image/*");
-                /* 使用Intent.ACTION_GET_CONTENT这个Action */
+                // 使用Intent.ACTION_GET_CONTENT这个Action
                 intent.setAction(Intent.ACTION_GET_CONTENT);
-                /* 取得相片后返回本画面 */
-                startActivityForResult(intent, 1);
+                // 取得相片后返回本画面
+                startActivityForResult(intent, 1);*/
             }
 
         });
