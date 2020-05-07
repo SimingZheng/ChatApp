@@ -24,4 +24,4 @@ We use the
 
 
 In the future, if I improve the program, I will better beautify the UI design of the program,
-increase the calling function of the SIM card, and add file and picture transmission functions to the chat.
+increase the calling function of the SIM card, and add file and picture transmission functions to the chat. 
