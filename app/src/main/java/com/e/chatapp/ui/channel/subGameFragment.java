@@ -80,25 +80,26 @@ public class subGameFragment extends Fragment {
 
     private void initPhotos(){
         for(int i=0;i<10;i++){
-            Photo f1 = new Photo("f1", R.drawable.f1);
-            photoList.add(f1);
-            Photo f2 = new Photo("f2", R.drawable.f2);
-            photoList.add(f2);
-            Photo f3 = new Photo("f3", R.drawable.f3);
-            photoList.add(f3);
-            Photo f4 = new Photo("f4", R.drawable.f4);
-            photoList.add(f4);
-            Photo f5 = new Photo("f5", R.drawable.f5);
-            photoList.add(f5);
-            Photo f6 = new Photo("f6", R.drawable.f6);
-            photoList.add(f6);
-            Photo f7 = new Photo("f7", R.drawable.f7);
-            photoList.add(f7);
-            Photo f8 = new Photo("f8", R.drawable.f8);
-            photoList.add(f8);
-            Photo f9 = new Photo("f9", R.drawable.f9);
-            photoList.add(f9);
-
+            Photo ga1 = new Photo("ga1", R.drawable.ga1);
+            photoList.add(ga1);
+            Photo ga2 = new Photo("ga2", R.drawable.ga2);
+            photoList.add(ga2);
+            Photo ga3 = new Photo("ga3", R.drawable.ga3);
+            photoList.add(ga3);
+            Photo ga4 = new Photo("ga4", R.drawable.ga4);
+            photoList.add(ga4);
+            Photo ga5 = new Photo("ga5", R.drawable.ga5);
+            photoList.add(ga5);
+            Photo ga6 = new Photo("ga6", R.drawable.ga6);
+            photoList.add(ga6);
+            Photo ga7 = new Photo("ga7", R.drawable.ga7);
+            photoList.add(ga7);
+            Photo ga8 = new Photo("ga8", R.drawable.ga8);
+            photoList.add(ga8);
+            Photo ga9 = new Photo("ga9", R.drawable.ga9);
+            photoList.add(ga9);
+            Photo ga10 = new Photo("ga10", R.drawable.ga10);
+            photoList.add(ga10);
 
         }
     }
