@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.e.chatapp.R;
 import com.e.chatapp.User_package.PostActivity;
 import com.e.chatapp.User_package.Postzone;
@@ -29,6 +30,8 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
 public class SubChannel extends AppCompatActivity {
@@ -40,6 +43,7 @@ public class SubChannel extends AppCompatActivity {
     private static final String TAG = "Postzonesubchannel";
     private Button button;
     private String data;
+    private FirebaseStorage storage;
     public static Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +58,7 @@ public class SubChannel extends AppCompatActivity {
         firebaseDatabase = FirebaseDatabase.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference().child("Postzone");
         mAuth = FirebaseAuth.getInstance();
+
         Intent intent = getIntent();
         data = intent.getStringExtra("extra_data");
         button=(Button)findViewById(R.id.PostButton);
@@ -110,7 +115,6 @@ public class SubChannel extends AppCompatActivity {
                         singleActivity.putExtra("PostID", post_key);
                         singleActivity.putExtra("Data",data);
                         startActivity(singleActivity);
-                        SubChannel.mActivity.finish();
                     }
                 });
             }
@@ -118,6 +122,15 @@ public class SubChannel extends AppCompatActivity {
         };
         recyclerView.setAdapter(adapter);
         adapter.startListening();
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Intent intent = getIntent();
+        overridePendingTransition(0, 0);
+        finish();
+        overridePendingTransition(0, 0);
+        startActivity(intent);
     }
     @Override
     protected void onResume(){
@@ -167,6 +180,7 @@ public class SubChannel extends AppCompatActivity {
         super.onDestroy();
         Log.e(TAG,"onDestroy");
     }
+
     public static class PostzoneViewHolder extends RecyclerView.ViewHolder{
         View mView;
         public PostzoneViewHolder(View itemView) {
@@ -182,9 +196,11 @@ public class SubChannel extends AppCompatActivity {
             post_desc.setText(desc);
         }
         public void setImageUrl(Context ctx, String imageUrl){
+            StorageReference storageReference = FirebaseStorage.getInstance().getReference().child("Post");
             ImageView post_image = mView.findViewById(R.id.post_image);
             //Picasso.get().load(imageUrl).into(post_image);
-            Picasso.get().load(imageUrl).placeholder(R.drawable.e2).into(post_image);
+            Picasso.get().load(imageUrl).placeholder(R.drawable.loading).into(post_image);
+            Log.w("Subchannel Picasso","successful");
         }
         public void setUserName(String userName){
             TextView postUserName = mView.findViewById(R.id.post_user);

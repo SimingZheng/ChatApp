@@ -71,7 +71,8 @@ public class SinglePostActivity extends AppCompatActivity {
 
                 singleChannel.setText(post_channel);
                 singleDesc.setText(post_desc);
-                Picasso.get().load(post_image).into(singelImage);
+                //Picasso.get().load(post_image).into(singelImage);
+                Picasso.get().load(post_image).placeholder(R.drawable.loading).into(singelImage);
                 if (mAuth.getCurrentUser().getUid().equals(post_uid)){
 
                     deleteBtn.setVisibility(View.VISIBLE);
