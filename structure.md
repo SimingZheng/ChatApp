@@ -21,10 +21,15 @@ In the User request interface, you can see the friend request of the other user,
 
 In the Nearby User interface, you can view the users around you, click nearby users to view nearby users, and view his distance from you.
 
-If you invite friends on the user profile page, click "send request". When the other party sees your friend's application, you can have "Accept Request" and "Cancel Request". After applying as a friend, you can click "Remove Friend" to remove the friend .
+If you invite friends on the user profile page, click "send request". When the other party sees your friend's application, you can have "Accept Request" and "Cancel Request". After applying as a friend, you can click "Remove Friend" to remove the friend.
+
+When a user sends a friend request, the system stores the user request in the database, and a notification will pop up in the user drop-down menu of the other user. However, the test was successful in the process of running, but it was not stable.
 
 <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-1.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-2.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-3.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-4.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-5.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-6.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/6-1.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/6-3.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/6-2.jpg" height="200" width="100"> 
 
+The 'channel' page is a page that provides users with the function of interest sharing. It is divided into nine different interest channels.
+
+Users can post in these nine channels according to different labels. Users can delete their posts. 
 
 
 <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-1.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-2.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-3.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-4.jpg" height="200" width="100">
