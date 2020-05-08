@@ -60,7 +60,7 @@ public class SubChannel extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
 
         Intent intent = getIntent();
-        data = intent.getStringExtra("extra_data");
+        data = intent.getStringExtra("Data");
         button=(Button)findViewById(R.id.PostButton);
         button.setOnClickListener(new Button.OnClickListener(){
             @Override
@@ -137,7 +137,7 @@ public class SubChannel extends AppCompatActivity {
         super.onResume();
         Log.d(TAG,"onResume");
         //mAuth.addAuthStateListener(mAuthListener);
-        data = getIntent().getStringExtra("extra_data");
+       /* data = getIntent().getStringExtra("extra_data");
         FirebaseRecyclerOptions<Postzone> options =
                 new FirebaseRecyclerOptions.Builder<Postzone>()
                         .setQuery(mDatabase.orderByChild("channel").equalTo(data), Postzone.class)
@@ -173,7 +173,7 @@ public class SubChannel extends AppCompatActivity {
 
         };
         recyclerView.setAdapter(adapter);
-        adapter.startListening();
+        adapter.startListening();*/
     }
     @Override
     protected void onDestroy(){
