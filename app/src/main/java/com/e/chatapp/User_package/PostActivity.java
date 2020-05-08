@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class PostActivity extends AppCompatActivity {
     private ImageButton imageBtn;
-    private static final int GALLERY_REQUEST_CODE = 2;
+    private static final int GALLERY_REQUEST_CODE = 1;
     private Uri uri = null;
     private EditText textChannel;
     private EditText textDesc;
@@ -47,6 +48,7 @@ public class PostActivity extends AppCompatActivity {
     private DatabaseReference mDatabaseUsers;
     private FirebaseUser mCurrentUser;
     private String data;
+    private String string;
     public static Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,13 +84,24 @@ public class PostActivity extends AppCompatActivity {
                 final String PostDesc = textDesc.getText().toString().trim();
                 //do a check for empty fields
                 if (!TextUtils.isEmpty(PostDesc) && !TextUtils.isEmpty(PostChannel)){
-                    StorageReference filepath = storage.child("post_images").child(uri.getLastPathSegment());
-                    filepath.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
+                    //final StorageReference filepath = storage.child("post_images").child(uri.getLastPathSegment());
+                    final  StorageReference filepath = storage.child(mDatabaseUsers+".jpg");
+                    filepath.putFile(uri)
+                            .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>(){
                         @Override
                         public void onSuccess(UploadTask.TaskSnapshot taskSnapshot){
-                            @SuppressWarnings("VisibleForTest")
+                            //@SuppressWarnings("VisibleForTest")
                             //getting the post image download url
-                            final Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+                            filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                                @Override
+                                public void onSuccess(Uri uri) {
+                                    final String imagedownload =uri.toString();
+                                    string = imagedownload;
+                                    Log.w("Postactivity","string changed");
+                                }
+                            });
+                            //final Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
+                            //Log.i("downloadURI",downloadUrl.toString());
                             Toast.makeText(getApplicationContext(), "Succesfully Uploaded", Toast.LENGTH_SHORT).show();
                             final DatabaseReference newPost = databaseRef.push();
                             //adding post contents to database reference
@@ -97,16 +110,15 @@ public class PostActivity extends AppCompatActivity {
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                                     newPost.child("channel").setValue(PostChannel);
                                     newPost.child("desc").setValue(PostDesc);
-                                    newPost.child("imageUrl").setValue(downloadUrl.toString());
+                                    //newPost.child("imageUrl").setValue(downloadUrl);
+                                    newPost.child("imageUrl").setValue(string);
+                                    Log.w("PostActivity","ImageUrl set successfully");
                                     newPost.child("uid").setValue(mCurrentUser.getUid());
                                     newPost.child("username").setValue(dataSnapshot.child("username").getValue())
                                             .addOnCompleteListener(new OnCompleteListener<Void>(){
                                                 @Override
                                                 public void onComplete(@NonNull Task<Void> task){
                                                     if(task.isSuccessful()){
-                                                        /*Intent intent = new Intent(PostActivity.this, SubChannel.class);
-                                                        intent.putExtra("Data",data);
-                                                        startActivity(intent);*/
                                                         PostActivity.mActivity.finish();
 
                                                     }
@@ -120,6 +132,7 @@ public class PostActivity extends AppCompatActivity {
                                 public void onCancelled(@NonNull DatabaseError databaseError) {
 
                                 }
+
                             });
                         }
                     });
@@ -136,6 +149,7 @@ public class PostActivity extends AppCompatActivity {
 
         if (requestCode == GALLERY_REQUEST_CODE&&resultCode == RESULT_OK){
             uri = data.getData();
+            Log.i("URI",uri.toString());
             imageBtn.setImageURI(uri);
         }
     }
