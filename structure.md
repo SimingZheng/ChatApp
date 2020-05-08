@@ -11,3 +11,7 @@ We try to add location permission settings in the app, but it fails.
 Chat page can use news connection to use Google News to view local news; users can chat with people who have become friends, on the page can display whether the user is online, if online is online, if not online will display last seen time.
 
 <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/3-1.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/3-2.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/3-3.jpg" height="200" width="100">
+
+
+
+<img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-1.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-2.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-3.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-4.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-5.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/4-6.jpg" height="200" width="100"> 
