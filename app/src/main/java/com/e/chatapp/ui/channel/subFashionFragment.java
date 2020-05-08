@@ -62,10 +62,6 @@ public class subFashionFragment extends Fragment {
 
         });
 
-
-
-
-
         RecyclerView recyclerView;
         initPhotos();
         recyclerView = view.findViewById(R.id.recycler_view);
