@@ -23,5 +23,11 @@ We use the
 
 
 
-In the future, if I improve the program, I will better beautify the UI design of the program,
-increase the calling function of the SIM card, and add file and picture transmission functions to the chat. 
+if We improve the program
+
+* We will better beautify the UI design of the program.
+
+* Add the phone call function, and allow file and picture can be transmission in the chatting.
+
+* Improve the permission setting system in the app, including location permission, message permission, and ringtone permission.
+
