@@ -64,6 +64,7 @@ public class PostActivity extends AppCompatActivity {
         mCurrentUser = mAuth.getCurrentUser();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(mCurrentUser.getUid());
         data = getIntent().getStringExtra("Data");
+        Log.i("PostActivity","getdata"+data);
         imageBtn = (ImageButton)findViewById(R.id.imageBtn);
         //picking image from gallery
         imageBtn.setOnClickListener(new View.OnClickListener(){
@@ -96,13 +97,44 @@ public class PostActivity extends AppCompatActivity {
                                 @Override
                                 public void onSuccess(Uri uri) {
                                     final String imagedownload =uri.toString();
-                                    string = imagedownload;
+                                    //string = imagedownload;
                                     Log.w("Postactivity","string changed");
+                                    Toast.makeText(getApplicationContext(), "Succesfully Uploaded", Toast.LENGTH_SHORT).show();
+                                    final DatabaseReference newPost = databaseRef.push();
+                                    //adding post contents to database reference
+                                    mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+                                        @Override
+                                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                            newPost.child("channel").setValue(PostChannel);
+                                            newPost.child("desc").setValue(PostDesc);
+                                            //newPost.child("imageUrl").setValue(downloadUrl);
+                                            newPost.child("imageUrl").setValue(imagedownload);
+                                            Log.w("PostActivity","ImageUrl set successfully");
+                                            newPost.child("uid").setValue(mCurrentUser.getUid());
+                                            newPost.child("username").setValue(dataSnapshot.child("username").getValue())
+                                                    .addOnCompleteListener(new OnCompleteListener<Void>(){
+                                                        @Override
+                                                        public void onComplete(@NonNull Task<Void> task){
+                                                            if(task.isSuccessful()){
+                                                                PostActivity.mActivity.finish();
+                                                            }
+                                                        }
+                                                    });
+
+
+                                        }
+
+                                        @Override
+                                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                        }
+
+                                    });
                                 }
                             });
                             //final Task<Uri> downloadUrl = taskSnapshot.getStorage().getDownloadUrl();
                             //Log.i("downloadURI",downloadUrl.toString());
-                            Toast.makeText(getApplicationContext(), "Succesfully Uploaded", Toast.LENGTH_SHORT).show();
+                            /*Toast.makeText(getApplicationContext(), "Succesfully Uploaded", Toast.LENGTH_SHORT).show();
                             final DatabaseReference newPost = databaseRef.push();
                             //adding post contents to database reference
                             mDatabaseUsers.addValueEventListener(new ValueEventListener() {
@@ -120,7 +152,6 @@ public class PostActivity extends AppCompatActivity {
                                                 public void onComplete(@NonNull Task<Void> task){
                                                     if(task.isSuccessful()){
                                                         PostActivity.mActivity.finish();
-
                                                     }
                                                 }
                                             });
@@ -134,7 +165,7 @@ public class PostActivity extends AppCompatActivity {
                                 }
 
                             });
-                        }
+                        */}
                     });
 
 
