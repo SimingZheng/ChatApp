@@ -31,5 +31,6 @@ The 'channel' page is a page that provides users with the function of interest s
 
 Users can post in these nine channels according to different labels. Users can delete their posts. 
 
+When publishing an article, the corresponding Subchannel interest name needs to be filled in the interest column.
 
 <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-1.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-2.jpg" height="200" width="100"> <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-3.jpg" height="200" width="100">  <img src="https://github.com/SimingZheng/ChatApp/blob/master/STRUCTURE%20images/5-4.jpg" height="200" width="100">
